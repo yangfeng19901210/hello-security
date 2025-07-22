@@ -46,4 +46,15 @@ public class SysUserDetailsService implements UserDetailsService {
         user1.setPermissions(Arrays.asList("admin:save","admin:update","ROLE_ADMIN"));
         userList.add(user1);
     }
+
+    public Boolean registerUser(String username, String password) {
+        SysUser user1 = new SysUser();
+        user1.setUsername(username);
+        user1.setPassword(passwordEncoder.encode(password));
+        user1.setStatus("0");
+        user1.setDelFlag("0");
+        user1.setRoles(Arrays.asList("ADMIN"));
+        user1.setPermissions(Arrays.asList("admin:save","admin:update","ROLE_ADMIN"));
+        return userList.add(user1);
+    }
 }

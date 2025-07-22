@@ -70,8 +70,8 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
                             "/js/**",
                             "/webjars/**",
                             "/favicon.ico",
-                            "/.well-known/**").permitAll()// 放行登录页及静态资源
-                    .requestMatchers("/auth/login").permitAll()
+                            "/.well-known/**","/hello/**").permitAll()// 放行登录页及静态资源
+                    .requestMatchers("/auth/login","registerUser").permitAll()
                     .anyRequest().authenticated() // 其他请求需认证
             )
             .userDetailsService(sysUserDetailsService)
