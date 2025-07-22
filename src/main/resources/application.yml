@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: hello-security
+server:
+  port: 7080
+
+jwt:
+  secret-key: VbM5f7NtItTlDPfwMBclhmrZ4tTx5OQD # jwt\u7B7E\u540D\u52A0\u5BC6\u79D8\u94A5
+  ttl: 7200000 # jwt\u8FC7\u671F\u65F6\u95F4
+  token-name: Authorization # \u524D\u7AEF\u4F20\u9012\u8FC7\u6765\u7684\u4EE4\u724C\u540D\u79F0
