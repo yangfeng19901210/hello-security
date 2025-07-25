@@ -60,26 +60,26 @@ public class SecurityConfig {
 //        );
 //        return manager;
 //    }
-@Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/login",
-                            "/error",
-                            "/css/**",
-                            "/js/**",
-                            "/webjars/**",
-                            "/favicon.ico",
-                            "/.well-known/**","/hello/**").permitAll()// 放行登录页及静态资源
-                    .requestMatchers("/auth/login","registerUser").permitAll()
-                    .anyRequest().authenticated() // 其他请求需认证
-            )
-            .userDetailsService(sysUserDetailsService)
-//            .formLogin(Customizer.withDefaults())
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-            .csrf(AbstractHttpConfigurer::disable)
-            .formLogin(AbstractHttpConfigurer::disable)
-            .httpBasic(AbstractHttpConfigurer::disable);
-    return http.build();
-}
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login",
+                                "/error",
+                                "/css/**",
+                                "/js/**",
+                                "/webjars/**",
+                                "/favicon.ico",
+                                "/.well-known/**","/hello/**").permitAll()// 放行登录页及静态资源
+                        .requestMatchers("/auth/login","registerUser").permitAll()
+                        .anyRequest().authenticated() // 其他请求需认证
+                )
+                .userDetailsService(sysUserDetailsService)
+    //            .formLogin(Customizer.withDefaults())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .csrf(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable);
+        return http.build();
+    }
 }
